@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverFactory {
 	private WebDriver driver;
@@ -12,6 +13,13 @@ public class DriverFactory {
 		 switch (browser.toLowerCase()) {
 
 	        case "chrome":
+	        	ChromeOptions options = new ChromeOptions();
+	        	if (System.getenv("CI") != null) {
+	                options.addArguments("--headless=new");
+	                options.addArguments("--no-sandbox");
+	                options.addArguments("--disable-dev-shm-usage");
+	                options.addArguments("--window-size=1920,1080");
+	            }
 	            driver = new ChromeDriver();
 	            break;
 	    
