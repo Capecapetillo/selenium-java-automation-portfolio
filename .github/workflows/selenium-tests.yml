@@ -27,3 +27,10 @@ jobs:
           AE_LOGIN_EMAIL: ${{ secrets.AE_LOGIN_EMAIL }}
           AE_LOGIN_PASSWORD: ${{ secrets.AE_LOGIN_PASSWORD }}
         run: mvn test
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-test-reports
+          path: target/surefire-reports/
