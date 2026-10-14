@@ -33,7 +33,8 @@ public class CheckoutTest extends BaseTest {
     	Assert.assertEquals(actualTotalAmount, expectedTotalAmount);
     	pomManager.getCheckoutPage().clickPlaceOrder();
     	
-    	
+    	System.out.println("URL after Place Order: " + driver.getCurrentUrl());
+    	System.out.println("Title after Place Order: " + driver.getTitle());
     	
     	pomManager.getPaymentPage().enterPaymentDetails(
     			"Test User", 
