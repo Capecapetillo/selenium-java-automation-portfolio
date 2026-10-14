@@ -2,7 +2,7 @@ package com.javier.automation.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+
 import org.openqa.selenium.support.FindBy;
 
 public class CheckoutPage extends BasePage {
@@ -24,10 +24,7 @@ public class CheckoutPage extends BasePage {
 	}
     
     public void clickPlaceOrder() {
-    	Actions actions = new Actions(driver);
-
-        actions.scrollToElement(placeOrderButton).perform();
-
         waitUtils.waitForElementToBeClickable(placeOrderButton).click();
-    	}
+        waitUtils.waitForUrlToContain("/payment");
+    }
 }

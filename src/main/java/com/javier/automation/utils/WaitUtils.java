@@ -37,4 +37,10 @@ public class WaitUtils {
         );
     }
     
+    public boolean waitForUrlToContain(String text) {
+        return wait.until(
+            ExpectedConditions.urlContains(text)
+        );
+    }
+    
 }
