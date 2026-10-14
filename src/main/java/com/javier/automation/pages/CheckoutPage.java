@@ -2,6 +2,7 @@ package com.javier.automation.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.TimeoutException;
 
 import org.openqa.selenium.support.FindBy;
 
@@ -25,6 +26,21 @@ public class CheckoutPage extends BasePage {
     
     public void clickPlaceOrder() {
         waitUtils.waitForElementToBeClickable(placeOrderButton).click();
+        try {
+            waitUtils.waitForUrlToContain("/payment");
+        } catch (TimeoutException e) {
+
+            if (driver.getCurrentUrl().contains("#google_vignette")) {
+
+                driver.navigate().back();
+
+                waitUtils.waitForElementToBeClickable(placeOrderButton).click();
+        
         waitUtils.waitForUrlToContain("/payment");
+            } else {
+                throw e;
+            }
+        
     }
-}
+}}
+
